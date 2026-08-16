@@ -9,8 +9,8 @@
     "dev": "vite",
     "build:app": "vite build",
     "build": "npm run build:app && electron-builder",
-    "build:mac": "npm run build:app && electron-builder --mac",
-    "build:win": "npm run build:app && electron-builder --win",
+    "build:win": "npm run build:app && electron-builder --win --publish=never",
+    "build:mac": "npm run build:app && electron-builder --mac --publish=never",
     "preview": "vite preview"
   },
   "devDependencies": {
