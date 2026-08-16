@@ -10,7 +10,7 @@
     "build:app": "tsc && vite build",
     "build": "npm run build:app && electron-builder",
     "build:mac": "npm run build:app && electron-builder --mac",
-    "build:win": "node scripts/build-win.js",
+    "build:win": "npm run build:app && electron-builder --win",
     "preview": "vite preview"
   },
   "devDependencies": {
