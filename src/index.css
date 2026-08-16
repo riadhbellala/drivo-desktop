@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* ── Design Token Custom Properties ── */
+:root {
+  --color-background: #F7F5F0;
+  --color-text: #0B0D10;
+  --color-accent: #E8542E;
+  --color-accent-blue: #2955F5;
+}
+
+/* ── GradientButton: Rotating Border Animation ── */
+@property --r {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spin-gradient {
+  to {
+    --r: 360deg;
+  }
+}
+
+.rotatingGradient {
+  background: conic-gradient(
+    from var(--r),
+    #E8542E,
+    #2955F5,
+    #0B0D10,
+    #E8542E
+  );
+  animation: spin-gradient 3s linear infinite;
+}
+
+.rotatingGradient:hover::after {
+  opacity: 0.85;
+}
+
+@layer base {
+  body {
+    background-color: #F7F5F0;
+    color: #0B0D10;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-data {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Custom scrollbars & smooth transitions */
+::selection {
+  background-color: #E8542E;
+  color: #F7F5F0;
+}
