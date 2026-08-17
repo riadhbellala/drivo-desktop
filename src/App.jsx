@@ -12,6 +12,7 @@ import AdminEditVehicle from './pages/AdminEditVehicle';
 import AdminBookings from './pages/AdminBookings';
 import NewBooking from './pages/NewBooking';
 import AdminCustomers from './pages/AdminCustomers';
+import AdminSettings from './pages/AdminSettings';
 
 import './index.css';
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/admin/bookings" element={<AdminBookings />} />
             <Route path="/admin/bookings/new" element={<NewBooking />} />
             <Route path="/admin/customers" element={<AdminCustomers />} />
+            <Route path="/admin/settings" element={<AdminSettings />} />
           </Route>
         </Route>
 

@@ -126,20 +126,15 @@ function AdminDashboard() {
   return (
     <AdminLayout
       title="Dashboard"
-      subtitle="Plan, prioritize, and accomplish your tasks with ease."
+      subtitle="Manage your fleet, bookings, and customers."
       action={
-        <>
-          <NavLink
-            to="/admin/vehicles/new"
-            className="flex items-center gap-2 px-5 py-2.5 bg-[#1A6340] text-white rounded-full text-[13px] font-bold hover:bg-[#134D31] transition-colors"
-          >
-            <PlusCircle size={14} />
-            Add Project
-          </NavLink>
-          <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-[#1A6340] text-[#1A6340] rounded-full text-[13px] font-bold hover:bg-slate-50 transition-colors">
-            Import Data
-          </button>
-        </>
+        <NavLink
+          to="/admin/vehicles/new"
+          className="flex items-center gap-2 px-5 py-2.5 bg-[#1A6340] text-white rounded-full text-[13px] font-bold hover:bg-[#134D31] transition-colors"
+        >
+          <PlusCircle size={14} />
+          Add Vehicle
+        </NavLink>
       }
     >
       {loading ? (
@@ -185,10 +180,10 @@ function AdminDashboard() {
                         <p className="text-[12px] text-slate-400 mt-1 font-medium">
                           Date : {new Date(nextBooking.start_date).toLocaleDateString()}
                         </p>
-                        <button className="mt-6 w-full py-3 bg-[#1A6340] text-white rounded-xl text-[13px] font-bold hover:bg-[#134D31] flex justify-center items-center gap-2">
+                        <NavLink to="/admin/bookings" className="mt-6 w-full py-3 bg-[#1A6340] text-white rounded-xl text-[13px] font-bold hover:bg-[#134D31] flex justify-center items-center gap-2">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                          Start Handover
-                        </button>
+                          View Bookings
+                        </NavLink>
                       </div>
                     ) : (
                       <div className="flex-1 flex items-center justify-center text-slate-400 text-sm font-medium">
@@ -204,9 +199,6 @@ function AdminDashboard() {
                   <div className="md:col-span-5 bg-white rounded-[24px] p-6 shadow-sm border border-slate-100">
                     <div className="flex items-center justify-between mb-5">
                       <h3 className="font-display font-medium text-[16px] text-[#0B0D10]">Recent Customers</h3>
-                      <button className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 rounded-full text-[11px] font-bold text-slate-600 hover:bg-slate-50">
-                        <PlusCircle size={12} /> Add Customer
-                      </button>
                     </div>
                     <div className="space-y-4">
                       {recentCustomers.map((c, i) => (
@@ -272,9 +264,9 @@ function AdminDashboard() {
                <div className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 flex-1 flex flex-col">
                  <div className="flex items-center justify-between mb-6">
                    <h3 className="font-display font-medium text-[16px] text-[#0B0D10]">Recent Bookings</h3>
-                   <button className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 rounded-full text-[11px] font-bold text-slate-600 hover:bg-slate-50">
+                   <NavLink to="/admin/bookings/new" className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 rounded-full text-[11px] font-bold text-slate-600 hover:bg-slate-50">
                      <PlusCircle size={12} /> New
-                   </button>
+                   </NavLink>
                  </div>
                  
                  <div className="flex-1 space-y-5">
@@ -296,30 +288,9 @@ function AdminDashboard() {
                  </div>
                </div>
 
-               {/* Bottom Right Promo / Tracker */}
-               <div className="bg-[#0D2418] rounded-[24px] p-6 text-white relative overflow-hidden h-[180px]">
-                 <div className="absolute -inset-4 opacity-30">
-                   <div className="w-full h-full bg-[repeating-radial-gradient(circle_at_center,transparent_0,transparent_10px,rgba(255,255,255,0.1)_10px,rgba(255,255,255,0.1)_20px)]"></div>
-                 </div>
-                 <div className="relative z-10 flex flex-col h-full justify-between">
-                   <h3 className="font-display font-medium text-[14px]">Time Tracker</h3>
-                   <div className="text-center">
-                     <p className="font-display font-medium text-[42px] leading-none tracking-tight">01:24:08</p>
-                   </div>
-                   <div className="flex items-center justify-center gap-3">
-                     <button className="w-8 h-8 rounded-full bg-white text-[#0D2418] flex items-center justify-center hover:bg-slate-100">
-                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-                     </button>
-                     <button className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 border-2 border-white">
-                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16"></rect></svg>
-                     </button>
-                   </div>
-                 </div>
-               </div>
-
+               {/* Removed Time Tracker */}
             </div>
           </div>
-          
         </div>
       )}
     </AdminLayout>

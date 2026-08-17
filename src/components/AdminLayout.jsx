@@ -194,33 +194,9 @@ export function AdminLayout({ children, title, subtitle, action }) {
         style={{ marginLeft: sidebarOpen ? 240 : 0 }}
       >
         {/* Top Bar (Search + Profile) */}
-        <header className="px-8 py-5 flex items-center justify-between">
-          <div className="flex-1 max-w-[400px]">
-            <div className="relative flex items-center">
-              <div className="absolute left-4 text-slate-400">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </div>
-              <input 
-                type="text" 
-                placeholder="Search task" 
-                className="w-full bg-white pl-12 pr-12 py-3.5 rounded-full text-[13px] text-slate-800 focus:outline-none placeholder:text-slate-400 font-medium"
-              />
-              <div className="absolute right-3 flex items-center justify-center bg-slate-100 rounded-md px-2 py-1">
-                <span className="text-[10px] font-bold text-slate-500">⌘ F</span>
-              </div>
-            </div>
-          </div>
+        <header className="px-8 py-5 flex items-center justify-end">
 
           <div className="flex items-center gap-4">
-            <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </svg>
-            </button>
             <NotificationBell />
             
             <div className="flex items-center gap-3 ml-2">
