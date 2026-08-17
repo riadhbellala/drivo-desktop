@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import carLogo from '../assets/carlogo.png';
+import authBg from '../assets/auth_bg.png';
 import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 
@@ -65,7 +66,7 @@ function Login() {
 
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-between p-6 sm:p-10 md:p-14 bg-cover bg-center bg-no-repeat font-body overflow-hidden selection:bg-[#E8542E] selection:text-white"
-         style={{ backgroundImage: "url('/images/auth_bg.png')" }}>
+         style={{ backgroundImage: `url(${authBg})` }}>
       
       {/* Light Gradient Overlay for subtle contrast & readability */}
       <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-white/10 to-transparent pointer-events-none" />
