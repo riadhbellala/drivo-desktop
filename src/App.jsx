@@ -4,6 +4,7 @@ import RequireAuth from './components/RequireAuth';
 import RequireAdmin from './components/RequireAdmin';
 
 import Login from './pages/Login';
+import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminVehiclesList from './pages/AdminVehiclesList';
 import AdminAddVehicle from './pages/AdminAddVehicle';
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         {/* Public: login only */}
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         {/* All admin routes require auth + agency role */}
         <Route element={<RequireAuth />}>
