@@ -4,8 +4,8 @@ import { supabase } from '../lib/supabaseClient';
 import carLogo from '../assets/carlogo.png';
 import NotificationBell from './NotificationBell';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
 import { API_URL } from '../config';
+import {
   LayoutDashboard, Car, CalendarCheck, Users, LogOut,
   PlusCircle, Menu, X, ChevronRight, TrendingUp,
   ArrowLeft,

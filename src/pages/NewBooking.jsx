@@ -3,8 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { AdminLayout, StatusBadge } from '../components/AdminLayout';
 import { motion } from 'framer-motion';
-import {
 import { API_URL } from '../config';
+import {
   Car, Calendar, User, UserPlus, Search, CheckCircle2,
   AlertCircle, ArrowLeft, DollarSign,
 } from 'lucide-react';

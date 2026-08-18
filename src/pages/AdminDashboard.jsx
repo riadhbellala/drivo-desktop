@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { AdminLayout, StatCard, StatusBadge } from '../components/AdminLayout';
-import {
 import { API_URL } from '../config';
+import {
   CircleDollarSign, Car, CalendarCheck, Users,
   ChevronRight, TrendingUp, PlusCircle, Zap,
 } from 'lucide-react';

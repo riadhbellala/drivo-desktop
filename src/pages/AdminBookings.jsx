@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { AdminLayout, StatCard, StatusBadge } from '../components/AdminLayout';
-import {
 import { API_URL } from '../config';
+import {
   CalendarCheck, Clock, CheckCircle2, XCircle,
   Search, PlusCircle,
 } from 'lucide-react';
