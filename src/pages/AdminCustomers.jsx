@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { AdminLayout, StatCard } from '../components/AdminLayout';
 import { Users, UserCheck, UserX, Search } from 'lucide-react';
+import { API_URL } from '../config';
 
 function AdminCustomers() {
   const [customers, setCustomers] = useState([]);
@@ -17,7 +18,7 @@ function AdminCustomers() {
       setLoading(true);
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) return;
-      const res = await fetch('http://localhost:4000/customers', {
+      const res = await fetch(`${API_URL}/customers`, {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
       if (res.ok) setCustomers(await res.json());
@@ -29,7 +30,7 @@ function AdminCustomers() {
     try {
       setTogglingId(id);
       const { data: { session } } = await supabase.auth.getSession();
-      const res = await fetch(`http://localhost:4000/customers/${id}/disable`, {
+      const res = await fetch(`${API_URL}/customers/${id}/disable`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
         body: JSON.stringify({ isDisabled: !current }),

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AdminLayout } from '../components/AdminLayout';
 import { supabase } from '../lib/supabaseClient';
+import { API_URL } from '../config';
 
 function AdminSettings() {
   const [agency, setAgency] = useState(null);
@@ -19,7 +20,7 @@ function AdminSettings() {
           return;
         }
 
-        const res = await fetch('http://localhost:4000/agencies/me', {
+        const res = await fetch(`${API_URL}/agencies/me`, {
           headers: { Authorization: `Bearer ${session.access_token}` },
         });
 

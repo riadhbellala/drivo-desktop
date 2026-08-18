@@ -4,6 +4,7 @@ import carLogo from '../assets/carlogo.png';
 import authBg from '../assets/auth_bg.png';
 import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
+import { API_URL } from '../config';
 
 function Register() {
   const [fullName, setFullName] = useState('');
@@ -39,7 +40,7 @@ function Register() {
 
   const registerAgency = async (token) => {
     try {
-      const res = await fetch('http://localhost:4000/agencies/register', {
+      const res = await fetch(`${API_URL}/agencies/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

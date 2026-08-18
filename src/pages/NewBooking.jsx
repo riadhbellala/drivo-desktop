@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { AdminLayout, StatusBadge } from '../components/AdminLayout';
 import { motion } from 'framer-motion';
 import {
+import { API_URL } from '../config';
   Car, Calendar, User, UserPlus, Search, CheckCircle2,
   AlertCircle, ArrowLeft, DollarSign,
 } from 'lucide-react';
@@ -72,8 +73,8 @@ function NewBooking() {
 
         const headers = { Authorization: `Bearer ${session.access_token}` };
         const [vehiclesRes, customersRes] = await Promise.all([
-          fetch('http://localhost:4000/vehicles/mine', { headers }),
-          fetch('http://localhost:4000/customers', { headers }),
+          fetch(`${API_URL}/vehicles/mine`, { headers }),
+          fetch(`${API_URL}/customers`, { headers }),
         ]);
 
         if (vehiclesRes.ok) setVehicles(await vehiclesRes.json());
@@ -162,7 +163,7 @@ function NewBooking() {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('Not authenticated.');
 
-      const res = await fetch('http://localhost:4000/bookings/staff', {
+      const res = await fetch(`${API_URL}/bookings/staff`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

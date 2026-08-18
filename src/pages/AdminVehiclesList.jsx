@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { AdminLayout, StatCard, StatusBadge } from '../components/AdminLayout';
 import { Car, CheckCircle2, Clock, PlusCircle, Pencil, Trash2, Search } from 'lucide-react';
+import { API_URL } from '../config';
 
 function AdminVehiclesList() {
   const [vehicles, setVehicles] = useState([]);
@@ -18,7 +19,7 @@ function AdminVehiclesList() {
     try {
       setLoading(true);
       const { data: { session } } = await supabase.auth.getSession();
-      const res = await fetch('http://localhost:4000/vehicles/mine', {
+      const res = await fetch(`${API_URL}/vehicles/mine`, {
         headers: { Authorization: `Bearer ${session?.access_token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch vehicles');
@@ -32,7 +33,7 @@ function AdminVehiclesList() {
     try {
       setDeletingId(id);
       const { data: { session } } = await supabase.auth.getSession();
-      const res = await fetch(`http://localhost:4000/vehicles/${id}`, {
+      const res = await fetch(`${API_URL}/vehicles/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${session.access_token}` },
       });

@@ -5,6 +5,7 @@ import carLogo from '../assets/carlogo.png';
 import NotificationBell from './NotificationBell';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
+import { API_URL } from '../config';
   LayoutDashboard, Car, CalendarCheck, Users, LogOut,
   PlusCircle, Menu, X, ChevronRight, TrendingUp,
   ArrowLeft,
@@ -82,7 +83,7 @@ export function AdminLayout({ children, title, subtitle, action }) {
       if (p?.full_name) setAdminName(p.full_name);
 
       try {
-        const res = await fetch('http://localhost:4000/agencies/me', {
+        const res = await fetch(`${API_URL}/agencies/me`, {
           headers: { Authorization: `Bearer ${session.access_token}` },
         });
         if (res.ok) {

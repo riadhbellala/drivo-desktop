@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { Bell, CheckCheck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_URL } from '../config';
 
 export default function NotificationBell() {
   const [notifications, setNotifications] = useState([]);
@@ -14,7 +15,7 @@ export default function NotificationBell() {
     if (!session) return;
 
     try {
-      const res = await fetch('http://localhost:4000/notifications', {
+      const res = await fetch(`${API_URL}/notifications`, {
         headers: { 'Authorization': `Bearer ${session.access_token}` }
       });
       if (res.ok) {
@@ -48,7 +49,7 @@ export default function NotificationBell() {
     if (!session) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/notifications/${notifId}/read`, {
+      const res = await fetch(`${API_URL}/notifications/${notifId}/read`, {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${session.access_token}` }
       });
@@ -68,7 +69,7 @@ export default function NotificationBell() {
 
     try {
       setMarkingAll(true);
-      const res = await fetch('http://localhost:4000/notifications/read-all', {
+      const res = await fetch(`${API_URL}/notifications/read-all`, {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${session.access_token}` }
       });

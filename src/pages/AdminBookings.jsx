@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { AdminLayout, StatCard, StatusBadge } from '../components/AdminLayout';
 import {
+import { API_URL } from '../config';
   CalendarCheck, Clock, CheckCircle2, XCircle,
   Search, PlusCircle,
 } from 'lucide-react';
@@ -31,7 +32,7 @@ function AdminBookings() {
       setLoading(true);
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) return;
-      const res = await fetch('http://localhost:4000/bookings/admin/all', {
+      const res = await fetch(`${API_URL}/bookings/admin/all`, {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
       if (res.ok) setBookings(await res.json());
@@ -43,7 +44,7 @@ function AdminBookings() {
     try {
       setUpdatingId(id);
       const { data: { session } } = await supabase.auth.getSession();
-      const res = await fetch(`http://localhost:4000/bookings/admin/${id}/status`, {
+      const res = await fetch(`${API_URL}/bookings/admin/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
         body: JSON.stringify({ newStatus: next }),

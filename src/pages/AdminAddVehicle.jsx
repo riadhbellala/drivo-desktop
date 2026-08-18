@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AdminLayout } from '../components/AdminLayout';
 import { UploadCloud, CheckCircle2, AlertCircle, Save } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { API_URL } from '../config';
 
 const initialForm = {
   brand: '',
@@ -96,7 +97,7 @@ function AdminAddVehicle() {
       };
 
       // Step 1: Create vehicle row
-      const response = await fetch('http://localhost:4000/vehicles', {
+      const response = await fetch(`${API_URL}/vehicles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +130,7 @@ function AdminAddVehicle() {
           }
 
           // Step 3: Register image in backend API
-          const imgResponse = await fetch(`http://localhost:4000/vehicles/${vehicleId}/images`, {
+          const imgResponse = await fetch(`${API_URL}/vehicles/${vehicleId}/images`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { AdminLayout, StatCard, StatusBadge } from '../components/AdminLayout';
 import {
+import { API_URL } from '../config';
   CircleDollarSign, Car, CalendarCheck, Users,
   ChevronRight, TrendingUp, PlusCircle, Zap,
 } from 'lucide-react';
@@ -63,9 +64,9 @@ function AdminDashboard() {
         const h = { Authorization: `Bearer ${session.access_token}` };
 
         const [sRes, bRes, vRes] = await Promise.all([
-          fetch('http://localhost:4000/dashboard', { headers: h }),
-          fetch('http://localhost:4000/bookings/admin/all', { headers: h }),
-          fetch('http://localhost:4000/vehicles/mine', { headers: h }),
+          fetch(`${API_URL}/dashboard`, { headers: h }),
+          fetch(`${API_URL}/bookings/admin/all`, { headers: h }),
+          fetch(`${API_URL}/vehicles/mine`, { headers: h }),
         ]);
 
         if (sRes.ok) {

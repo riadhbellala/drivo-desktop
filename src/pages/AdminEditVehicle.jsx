@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { AdminLayout } from '../components/AdminLayout';
 import { UploadCloud, CheckCircle2, AlertCircle, Save, Car, ArrowLeft, Image as ImageIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { API_URL } from '../config';
 
 const initialForm = {
   brand: '',
@@ -71,7 +72,7 @@ function AdminEditVehicle() {
     const fetchVehicle = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:4000/vehicles/${id}`);
+        const res = await fetch(`${API_URL}/vehicles/${id}`);
         if (!res.ok) throw new Error('Failed to fetch vehicle details');
         const data = await res.json();
         
@@ -134,7 +135,7 @@ function AdminEditVehicle() {
       };
 
       // 1. Update vehicle details
-      const response = await fetch(`http://localhost:4000/vehicles/${id}`, {
+      const response = await fetch(`${API_URL}/vehicles/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -165,7 +166,7 @@ function AdminEditVehicle() {
           }
 
           // Register in backend
-          const imgResponse = await fetch(`http://localhost:4000/vehicles/${id}/images`, {
+          const imgResponse = await fetch(`${API_URL}/vehicles/${id}/images`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
