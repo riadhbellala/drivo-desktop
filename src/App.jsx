@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import RequireAuth from './components/RequireAuth';
 import RequireAdmin from './components/RequireAdmin';
@@ -18,7 +18,7 @@ import './index.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Public: login only */}
         <Route path="/login" element={<Login />} />
@@ -41,7 +41,7 @@ function App() {
         {/* Default: redirect to login */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
