@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
-import carLogo from '../assets/carlogo.png';
+import carLogo from '../assets/logo.webp';
 import NotificationBell from './NotificationBell';
 import { motion, AnimatePresence } from 'framer-motion';
 import { API_URL } from '../config';
@@ -123,8 +123,8 @@ export function AdminLayout({ children, title, subtitle, action }) {
             {/* Brand */}
             <div className="px-6 py-6 pb-8">
               <Link to="/" className="flex items-center gap-3 group">
-                <img src={carLogo} alt="DriveEase Logo" className="h-8 w-auto object-contain transition-transform group-hover:scale-105" />
-                <span className="font-display font-bold text-xl tracking-tight text-[#0B0D10]">{agencyName || 'DriveEase'}</span>
+                <img src={carLogo} alt="Drivo Logo" className="h-8 w-auto object-contain transition-transform group-hover:scale-105" />
+                <span className="font-display font-bold text-xl tracking-tight text-[#0B0D10]">{agencyName || 'Drivo'}</span>
               </Link>
             </div>
 

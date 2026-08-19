@@ -79,7 +79,7 @@ function AdminSettings() {
                 <div className="space-y-2">
                   <label className="block text-[13px] font-bold text-[#0B0D10]/70">URL Slug</label>
                   <div className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 font-medium flex items-center">
-                    <span className="text-slate-400 mr-1">driveease.com/</span>
+                    <span className="text-slate-400 mr-1">drivo.com/</span>
                     <span>{agency.slug}</span>
                   </div>
                   <p className="text-[11px] text-slate-400">Your unique marketplace URL identifier.</p>
@@ -91,7 +91,7 @@ function AdminSettings() {
                 <div>
                   <h3 className="text-[14px] font-bold text-[#0B0D10]">Marketplace Visibility</h3>
                   <p className="text-[12px] text-slate-500 mt-1">
-                    When enabled, your vehicles are visible on the public DriveEase marketplace.
+                    When enabled, your vehicles are visible on the public Drivo marketplace.
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
