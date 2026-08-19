@@ -9,19 +9,22 @@ import {
   ChevronRight, TrendingUp, PlusCircle, Zap,
 } from 'lucide-react';
 
-/* Mini bar chart styled like the mockup */
-function MockupBarChart({ values }) {
-  const max = Math.max(...values, 1);
+/* Mini bar chart — values is array of { count, label } for 7 days */
+function MockupBarChart({ days }) {
+  const counts = days.map(d => d.count);
+  const max = Math.max(...counts, 1);
+  const total = counts.reduce((a, b) => a + b, 0);
   return (
     <div className="flex items-end justify-between h-[120px] w-full pt-4">
-      {values.map((v, i) => {
-        const isHighest = v === max;
-        const h = Math.max((v / max) * 100, 15);
+      {days.map((d, i) => {
+        const isHighest = d.count === max && d.count > 0;
+        const h = Math.max((d.count / max) * 100, 6);
+        const pct = total > 0 ? Math.round((d.count / total) * 100) : 0;
         return (
           <div key={i} className="flex flex-col items-center gap-2 w-10">
             {isHighest && (
               <span className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
-                74%
+                {pct}%
               </span>
             )}
             <motion.div
@@ -29,12 +32,12 @@ function MockupBarChart({ values }) {
               animate={{ scaleY: 1 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
               className={`w-full rounded-full origin-bottom ${
-                isHighest ? 'bg-[#5EC28B]' : (i % 2 === 0 ? 'bg-[#1A6340]' : 'bg-slate-200 bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,rgba(0,0,0,0.05)_2px,rgba(0,0,0,0.05)_4px)]')
+                isHighest ? 'bg-[#5EC28B]' : (i % 2 === 0 ? 'bg-[#1A6340]' : 'bg-slate-200')
               }`}
               style={{ height: `${h}%` }}
             />
             <span className="text-[11px] font-medium text-slate-400 mt-1">
-              {['S','M','T','W','T','F','S'][i]}
+              {d.label}
             </span>
           </div>
         );
@@ -99,7 +102,21 @@ function AdminDashboard() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const spark = [30, 45, 74, 85, 40, 35, 45]; // 7 days
+  // Build last-7-days booking counts from real data
+  const last7Days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (6 - i));
+    return d;
+  });
+  const DAY_ABBR = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  const analyticsData = last7Days.map(date => {
+    const dayStr = date.toISOString().slice(0, 10);
+    const count = bookings.filter(b => {
+      const created = (b.created_at || b.start_date || '').slice(0, 10);
+      return created === dayStr;
+    }).length;
+    return { count, label: DAY_ABBR[date.getDay()] };
+  });
   const recentBookings = bookings.slice(0, 5);
   
   // Sort approved/active bookings by start_date ascending to find the next upcoming one
@@ -163,8 +180,11 @@ function AdminDashboard() {
                <div className="grid grid-cols-1 md:grid-cols-8 gap-6">
                   {/* Analytics */}
                   <div className="md:col-span-5 bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
-                    <h3 className="font-display font-medium text-[16px] text-[#0B0D10]">Booking Analytics</h3>
-                    <MockupBarChart values={spark} />
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-display font-medium text-[16px] text-[#0B0D10]">Booking Analytics</h3>
+                      <span className="text-[11px] text-slate-400 font-medium">Last 7 days</span>
+                    </div>
+                    <MockupBarChart days={analyticsData} />
                   </div>
                   
                   {/* Reminders / Next Booking */}
